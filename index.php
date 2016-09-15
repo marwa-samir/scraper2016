@@ -55,7 +55,7 @@ if (isset($accessToken)) {
 
 	// getting basic info about user
 	try {
-		$profile_request = $fb->get('/me?fields=name,first_name,last_name,email');
+		$profile_request = $fb->get('/me?fields=name,first_name,last_name,email,gender');
 		$profile = $profile_request->getGraphNode()->asArray();
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		// When Graph returns an error
