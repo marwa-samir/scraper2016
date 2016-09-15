@@ -10,7 +10,7 @@ $fb = new Facebook\Facebook([
 
 $helper = $fb->getRedirectLoginHelper();
 
-$permissions = ['email']; // optional
+$permissions = ['email','Location']; // optional
 	
 try {
 	if (isset($_SESSION['facebook_access_token'])) {
