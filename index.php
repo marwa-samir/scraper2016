@@ -5,7 +5,7 @@ require_once __DIR__ . '/src/Facebook/autoload.php';
 $fb = new Facebook\Facebook([
   'app_id' => '140038899779319',
   'app_secret' => 'e2a99710f4e9f305abd95b6290189779',
-  'default_graph_version' => 'v2.7',
+  'default_graph_version' => 'v2.4',
   ]);
 
 $helper = $fb->getRedirectLoginHelper();
@@ -55,7 +55,7 @@ if (isset($accessToken)) {
 
 	// getting basic info about user
 	try {
-		$profile_request = $fb->get('/me?fields=name,first_name,last_name,email,gender,location');
+		$profile_request = $fb->get('/me?fields=name,first_name,last_name,email,message');
 		$profile = $profile_request->getGraphNode()->asArray();
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
 		// When Graph returns an error
@@ -72,11 +72,10 @@ if (isset($accessToken)) {
 	
 	// printing $profile array on the screen which holds the basic info about user
 	print_r($profile);
-	echo "<br>You are Loged in as ". $profile['name'];
 
   	// Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
 } else {
 	// replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
-	$loginUrl = $helper->getLoginUrl('https://scraper2016.herokuapp.com/', $permissions);
+	$loginUrl = $helper->getLoginUrl('http://mydemo.esy.es/php-graph-sdk/', $permissions);
 	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 }
